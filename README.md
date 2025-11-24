@@ -18,8 +18,8 @@
             background-color: #ff80ab;
             padding: 10px;
             border-radius: 10px;
-            margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         h1 {
@@ -250,8 +250,11 @@
                 { id: 2, name: "Unicorn Shiba", file: "pexels-shvetsa-4588049.jpg", rarity: "Common" },
                 { id: 3, name: "Big Smile Chihuahua", file: "images.jfif", rarity: "Uncommon" },
                 { id: 4, name: "Sunset Flower Retriever", file: "b05c4816a3b4d1d0c57e2a67592b5084.jpg", rarity: "Uncommon" },
-                { id: 5, name: "Propeller Hat Pup", file: "dog-cute.gif", rarity: "Rare" },
-                { id: 6, name: "Golden Phoenix Dog", file: "dog-cute-rare.jpg", rarity: "Epic" }
+                
+                // --- Rarity Swap ---
+                { id: 5, name: "Propeller Hat Pup", file: "dog-cute.gif", rarity: "Epic" }, // NEW EPIC! (2% chance)
+                { id: 6, name: "Golden Phoenix Dog", file: "dog-cute-rare.jpg", rarity: "Rare" } // NEW RARE! (8% chance)
+                // -------------------
             ];
 
             const ROLL_COST = 10;
