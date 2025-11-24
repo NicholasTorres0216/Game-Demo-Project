@@ -272,7 +272,7 @@
             <div class="panel instructions">
                 <h2>📜 How to Play</h2>
                 <ul>
-                    <li>Click the Big Paw Button at the center to earn Clicks (1 click per press).</li>
+                    <li>Click the Big Paw Button at the bottom left to earn Clicks (1 click per press).</li>
                     <li>Once at 10 Clicks, you may spend them to Roll for a chance to obtain an animal picture of varying rarity's.</li>
                     <li>Collect all the unique, adorable pets and brag to all your friends!</li>
                 </ul>
