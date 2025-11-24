@@ -166,7 +166,7 @@
 
         .command-box button {
             padding: 8px 15px;
-            background-color: #8e44ad; /* Purple button */
+            background-color: #8e44ad;
             color: white;
             border: none;
             border-radius: 4px;
@@ -272,8 +272,8 @@
             <div class="panel instructions">
                 <h2>📜 How to Play</h2>
                 <ul>
-                    <li>Click the **Big Paw Button** at the center to earn Clicks (1 click per press).</li>
-                    <li>Once at **10 Clicks**, you may spend them to **Roll** for a chance to obtain an animal picture of varying rarity's.</li>
+                    <li>Click the Big Paw Button at the center to earn Clicks (1 click per press).</li>
+                    <li>Once at 10 Clicks, you may spend them to Roll for a chance to obtain an animal picture of varying rarity's.</li>
                     <li>Collect all the unique, adorable pets and brag to all your friends!</li>
                 </ul>
             </div>
@@ -325,7 +325,7 @@
             ];
 
             const ROLL_COST = 10;
-            const CONSECUTIVE_ROLLS_NEEDED = 10; // Changed to 10
+            const CONSECUTIVE_ROLLS_NEEDED = 10;
             
             let clicks = 0;
             let ownedPets = {};
@@ -459,7 +459,7 @@
                 const command = commandInput.value.trim().toLowerCase();
                 if (command === "gamblersdream") {
                     unlockAllPets();
-                    commandInput.value = ''; // Clear input
+                    commandInput.value = '';
                 } else {
                     alert("Invalid command.");
                 }
