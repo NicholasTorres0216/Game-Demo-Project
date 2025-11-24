@@ -1,187 +1,214 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Gacha Clicker Prototype</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Pet Gacha Clicker Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #fce4ec;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
             color: #333;
             text-align: center;
             padding: 20px;
         }
 
         header {
-            background-color: #ff80ab;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            background-color: #2c3e50;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         h1 {
-            font-family: 'Fredoka One', cursive;
-            color: #fff;
-            font-size: 2.5em;
+            font-family: 'Montserrat', sans-serif;
+            color: #ecf0f1;
+            font-size: 2.2em;
             margin: 0;
+            letter-spacing: 1px;
         }
 
         #game-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: 1fr 2fr;
+            gap: 25px;
         }
 
         .panel {
             background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: left;
         }
 
-        .instructions {
-            grid-column: 1 / 3;
-            background-color: #ffe5f1;
-        }
-
-        .instructions h2, .stats h2, .gallery h2 {
-            font-family: 'Fredoka One', cursive;
-            color: #e91e63;
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #34495e;
             margin-top: 0;
-            border-bottom: 2px solid #f48fb1;
-            padding-bottom: 5px;
+            border-bottom: 2px solid #bdc3c7;
+            padding-bottom: 10px;
+            font-size: 1.5em;
         }
 
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .instructions ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 10px 0 0 0;
+            line-height: 1.6;
+        }
+        
+        .stats p {
+            font-size: 1.1em;
+            margin: 8px 0;
+        }
+        .stats span {
+            font-weight: 700;
+            color: #2980b9;
+        }
+        
         .click-section {
-            grid-column: 1 / 3;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         #click-button {
-            background-color: #81c784;
+            background-color: #2ecc71;
             color: white;
-            font-family: 'Fredoka One', cursive;
-            font-size: 3em;
-            padding: 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5em;
+            padding: 50px;
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 8px #689f38;
+            box-shadow: 0 8px #27ae60;
             transition: all 0.1s;
             outline: none;
+            width: 180px;
+            height: 180px;
+            position: relative;
+            margin-top: 15px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 200px;
-            height: 200px;
-            position: relative;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
         #click-button:active {
-            box-shadow: 0 4px #689f38;
+            box-shadow: 0 4px #27ae60;
             transform: translateY(4px);
         }
 
-        #click-button .icon {
-            font-size: 2em;
-            line-height: 1;
-        }
-        #click-button .text {
-            font-size: 0.5em;
-        }
-
-        .roll-section {
-            grid-column: 1 / 3;
-            text-align: center;
-        }
-
         #roll-button {
-            background-color: #4fc3f7;
+            background-color: #3498db;
             color: white;
-            font-family: 'Fredoka One', cursive;
-            font-size: 1.5em;
-            padding: 15px 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            padding: 12px 25px;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            box-shadow: 0 4px #0288d1;
+            box-shadow: 0 3px #2980b9;
             transition: all 0.1s;
+            width: 100%;
+            max-width: 300px;
         }
 
         #roll-button:disabled {
-            background-color: #b0bec5;
-            box-shadow: 0 4px #78909c;
+            background-color: #bdc3c7;
+            box-shadow: 0 3px #95a5a6;
             cursor: not-allowed;
         }
 
         #roll-button:enabled:active {
-            box-shadow: 0 2px #0288d1;
+            box-shadow: 0 1px #2980b9;
             transform: translateY(2px);
         }
 
         #roll-result {
             margin-top: 15px;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: bold;
-            color: #e91e63;
+            color: #e74c3c;
+            min-height: 20px;
+        }
+        
+        #let-it-ride-message {
+            color: #e67e22;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            margin-top: 5px;
+            min-height: 25px;
+        }
+
+        .gallery {
+            grid-column: 2 / 3;
         }
 
         #pet-gallery {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
-            justify-content: center;
+            justify-content: flex-start;
             margin-top: 15px;
         }
 
         .pet-card {
-            border: 3px solid #f48fb1;
-            border-radius: 10px;
-            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 8px;
             text-align: center;
-            width: 120px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s;
-            background-color: #fff;
+            width: 100px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            background-color: #fcfcfc;
             position: relative;
             overflow: hidden;
         }
 
         .pet-card.owned {
-            border-color: #4caf50;
-            background-color: #e8f5e9;
+            border-color: #2ecc71;
+            background-color: #f0fff0;
         }
 
         .pet-card img {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             object-fit: cover;
-            border-radius: 5px;
-        }
-
-        .pet-card .rarity {
-            font-size: 0.8em;
-            font-weight: bold;
-            margin-top: 5px;
-            padding: 2px 5px;
             border-radius: 4px;
-            color: #fff;
         }
 
-        .rarity-common { background-color: #64b5f6; }
-        .rarity-uncommon { background-color: #ffb74d; }
-        .rarity-rare { background-color: #9575cd; }
-        .rarity-epic { background-color: #e57373; }
+        .pet-card .name {
+            font-size: 0.8em;
+            font-weight: 700;
+            margin-top: 5px;
+            height: 2.2em;
+            line-height: 1.1;
+        }
+        
+        .pet-card .rarity {
+            font-size: 0.7em;
+            font-weight: 700;
+            padding: 2px 4px;
+            border-radius: 3px;
+            color: #fff;
+            margin-top: 3px;
+            display: inline-block;
+        }
+
+        .rarity-common { background-color: #3498db; }
+        .rarity-uncommon { background-color: #f39c12; }
+        .rarity-rare { background-color: #9b59b6; }
+        .rarity-epic { background-color: #e74c3c; }
 
         .not-owned::before {
             content: "???";
@@ -190,13 +217,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(44, 62, 80, 0.9);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2em;
-            font-family: 'Fredoka One', cursive;
+            font-size: 1.5em;
+            font-family: 'Montserrat', sans-serif;
             z-index: 10;
         }
     </style>
@@ -204,39 +231,43 @@
 <body>
 
     <header>
-        <h1>🌟 Pet Gacha Clicker 🐾</h1>
+        <h1>💎 GACHA COLLECTOR PROTOTYPE 💎</h1>
     </header>
 
     <div id="game-container">
-        <div class="panel instructions">
-            <h2>📜 How to Play</h2>
-            <ul>
-                <li>Click the **Big Paw Button** to earn Clicks (1 click per press).</li>
-                <li>Spend **10 Clicks** to **Roll** for a new Pet.</li>
-                <li>Collect all the unique, adorable pets!</li>
-            </ul>
-        </div>
         
-        <div class="panel stats">
-            <h2>📊 Game Stats</h2>
-            <p>Total Clicks: <span id="click-count">0</span></p>
-            <p>Unique Pets Collected: <span id="unique-pets-count">0</span> / <span id="total-pets">0</span></p>
-        </div>
-        
-        <div class="click-section">
-            <button id="click-button" aria-label="Click to earn Clicks">
-                <span class="icon">🐾</span>
-                <span class="text">Click Me!</span>
-            </button>
-        </div>
+        <div class="left-column">
+            
+            <div class="panel instructions">
+                <h2>📜 How to Play</h2>
+                <ul>
+                    <li>Click the **Big Paw Button** at the center to earn Clicks (1 click per press).</li>
+                    <li>Once at **10 Clicks**, you may spend them to **Roll** for a chance to obtain an animal picture of varying rarity's.</li>
+                    <li>Collect all the unique, adorable pets and brag to all your friends!</li>
+                </ul>
+            </div>
+            
+            <div class="panel stats">
+                <h2>📊 Status</h2>
+                <p>Total Clicks: <span id="click-count">0</span></p>
+                <p>Unique Pets Collected: <span id="unique-pets-count">0</span> / <span id="total-pets">0</span></p>
+            </div>
 
-        <div class="roll-section">
-            <button id="roll-button" disabled>Roll for Pet (10 Clicks)</button>
-            <div id="roll-result"></div>
+            <div class="panel click-section">
+                <h2>🖱️ Clicker</h2>
+                <button id="click-button" aria-label="Click to earn Clicks">
+                    🐾
+                </button>
+
+                <button id="roll-button" disabled>Roll for Pet (10 Clicks)</button>
+                <div id="let-it-ride-message"></div>
+                <div id="roll-result"></div>
+            </div>
+
         </div>
 
         <div class="panel gallery">
-            <h2>🖼️ Pet Collection Gallery</h2>
+            <h2>🖼️ Collection Gallery</h2>
             <div id="pet-gallery">
             </div>
         </div>
@@ -251,15 +282,18 @@
                 { id: 3, name: "Big Smile Chihuahua", file: "images.jfif", rarity: "Uncommon" },
                 { id: 4, name: "Sunset Flower Retriever", file: "b05c4816a3b4d1d0c57e2a67592b5084.jpg", rarity: "Uncommon" },
                 
-                // --- Rarity Swap ---
-                { id: 5, name: "Propeller Hat Pup", file: "dog-cute.gif", rarity: "Epic" }, // NEW EPIC! (2% chance)
-                { id: 6, name: "Golden Phoenix Dog", file: "dog-cute-rare.jpg", rarity: "Rare" } // NEW RARE! (8% chance)
-                // -------------------
+                { id: 5, name: "Propeller Hat Pup", file: "dog-cute.gif", rarity: "Rare" },
+                { id: 6, name: "Let It Ride Cat", file: "let-it.gif", rarity: "Rare" }, 
+                
+                { id: 7, name: "Dogs Playing Poker", file: "91Bh8U5goFL.jpg", rarity: "Epic" }
             ];
 
             const ROLL_COST = 10;
+            const CONSECUTIVE_ROLLS_NEEDED = 30;
+            
             let clicks = 0;
             let ownedPets = {};
+            let consecutiveDuplicateRolls = 0;
 
             const clickCountEl = document.getElementById('click-count');
             const uniquePetsCountEl = document.getElementById('unique-pets-count');
@@ -268,6 +302,7 @@
             const rollButton = document.getElementById('roll-button');
             const rollResultEl = document.getElementById('roll-result');
             const galleryEl = document.getElementById('pet-gallery');
+            const letItRideMessageEl = document.getElementById('let-it-ride-message');
             
             totalPetsEl.textContent = PET_IMAGES.length;
 
@@ -316,9 +351,21 @@
                 const pet = rollForPet();
                 const isNew = !ownedPets[pet.id];
 
+                if (isNew) {
+                    consecutiveDuplicateRolls = 0;
+                    letItRideMessageEl.textContent = '';
+                } else {
+                    consecutiveDuplicateRolls++;
+                }
+
+                if (consecutiveDuplicateRolls >= CONSECUTIVE_ROLLS_NEEDED) {
+                    letItRideMessageEl.innerHTML = `🔥 **LET IT RIDE!** (${consecutiveDuplicateRolls} Duplicates in a row!) 🔥`;
+                } else {
+                    letItRideMessageEl.textContent = `Need ${CONSECUTIVE_ROLLS_NEEDED - consecutiveDuplicateRolls} duplicate rolls for the message.`;
+                }
+
                 ownedPets[pet.id] = true;
                 updateGallery(pet.id);
-
                 updateUI();
 
                 let message = `You rolled the ${pet.rarity} **${pet.name}**! `;
@@ -366,7 +413,6 @@
 
             initGallery();
             updateUI();
+            letItRideMessageEl.textContent = `Need ${CONSECUTIVE_ROLLS_NEEDED} duplicate rolls for the message.`;
         });
     </script>
-</body>
-</html>
