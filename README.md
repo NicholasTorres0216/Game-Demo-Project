@@ -151,6 +151,37 @@
             min-height: 25px;
         }
 
+        .command-box {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .command-box input {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9em;
+            width: 200px;
+        }
+
+        .command-box button {
+            padding: 8px 15px;
+            background-color: #8e44ad; /* Purple button */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+            box-shadow: 0 2px #673082;
+            transition: all 0.1s;
+        }
+        .command-box button:active {
+            box-shadow: 0 1px #673082;
+            transform: translateY(1px);
+        }
+
+
         .gallery {
             grid-column: 2 / 3;
         }
@@ -231,7 +262,7 @@
 <body>
 
     <header>
-        <h1>💎 GACHA COLLECTOR PROTOTYPE 💎</h1>
+        <h1>GACHA CLICKER PROTOTYPE</h1>
     </header>
 
     <div id="game-container">
@@ -260,8 +291,13 @@
                 </button>
 
                 <button id="roll-button" disabled>Roll for Pet (10 Clicks)</button>
-                <div id="let-it-ride-message"></div>
                 <div id="roll-result"></div>
+                <div id="let-it-ride-message"></div>
+                
+                <div class="command-box">
+                    <input type="text" id="command-input" placeholder="Enter command...">
+                    <button id="command-button">Execute</button>
+                </div>
             </div>
 
         </div>
@@ -289,7 +325,7 @@
             ];
 
             const ROLL_COST = 10;
-            const CONSECUTIVE_ROLLS_NEEDED = 30;
+            const CONSECUTIVE_ROLLS_NEEDED = 10; // Changed to 10
             
             let clicks = 0;
             let ownedPets = {};
@@ -303,6 +339,8 @@
             const rollResultEl = document.getElementById('roll-result');
             const galleryEl = document.getElementById('pet-gallery');
             const letItRideMessageEl = document.getElementById('let-it-ride-message');
+            const commandInput = document.getElementById('command-input');
+            const commandButton = document.getElementById('command-button');
             
             totalPetsEl.textContent = PET_IMAGES.length;
 
@@ -407,9 +445,34 @@
                     card.classList.add('owned');
                 }
             }
+
+            function unlockAllPets() {
+                PET_IMAGES.forEach(pet => {
+                    ownedPets[pet.id] = true;
+                    updateGallery(pet.id);
+                });
+                updateUI();
+                rollResultEl.innerHTML = "✨ **All pets unlocked! GAMBLER'S DREAM achieved!** ✨";
+            }
+
+            function handleCommand() {
+                const command = commandInput.value.trim().toLowerCase();
+                if (command === "gamblersdream") {
+                    unlockAllPets();
+                    commandInput.value = ''; // Clear input
+                } else {
+                    alert("Invalid command.");
+                }
+            }
             
             clickButton.addEventListener('click', handleClick);
             rollButton.addEventListener('click', handleRoll);
+            commandButton.addEventListener('click', handleCommand);
+            commandInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleCommand();
+                }
+            });
 
             initGallery();
             updateUI();
